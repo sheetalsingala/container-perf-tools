@@ -1,14 +1,10 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent none
   stages {
-    stage('container-build') {
+    stage('Docker Build') {
+      agent any
       steps {
-        sh 'podman build'
+        sh 'podman build . --file standalone-trafficgen/Dockerfile-py3 --tag my-image-name:$(date +%s)'
       }
     }
 
