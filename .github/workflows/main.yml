@@ -22,3 +22,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run 
       run: podman run -d --rm --privileged -v /dev:/dev -v /sys:/sys -v /lib/modules:/lib/modules --cpuset-cpus 12-23 -e pci_list=0000:81:00.0,0000:81:00.1 --pod trafficgen my-image-name:latest /root/trafficgen_entry.sh server
+    - uses: actions/checkou@v2
+    - name: Run Server
+      run: python3 standalone-trafficgen/client.py --server-addr localhost --server-port 50051 --dst-macs ae:33:1d:ee:ba:15,82:c4:b6:f5:34:b5 start
