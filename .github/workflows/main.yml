@@ -11,7 +11,7 @@ jobs:
   build:
 
     runs-on: self-hosted
-
+#  podman pod create -p 50051:50051 -n trafficgen
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
@@ -19,12 +19,4 @@ jobs:
            podman build . --file standalone-trafficgen/Dockerfile-py3 --tag my-image-name:latest
            podman run -d --rm --privileged -v /dev:/dev -v /sys:/sys -v /lib/modules:/lib/modules --cpuset-cpus 12-23 -e pci_list=0000:81:00.0,0000:81:00.1 --pod trafficgen my-image-name:latest /root/trafficgen_entry.sh server
            python3 standalone-trafficgen/client.py --server-addr localhost --server-port 50051 --dst-macs ae:33:1d:ee:ba:15,82:c4:b6:f5:34:b5 start
-#     - uses: actions/checkout@v2
-#     - name: Create a pod
-#       run: podman pod create -p 50051:50051 -n trafficgen
-#     - uses: actions/checkout@v2
-#     - name: Run 
-#       run: podman run -d --rm --privileged -v /dev:/dev -v /sys:/sys -v /lib/modules:/lib/modules --cpuset-cpus 12-23 -e pci_list=0000:81:00.0,0000:81:00.1 --pod trafficgen my-image-name:latest /root/trafficgen_entry.sh server
-#     - uses: actions/checkout@v2
-#     - name: Run server 
-#       run: python3 standalone-trafficgen/client.py --server-addr localhost --server-port 50051 --dst-macs ae:33:1d:ee:ba:15,82:c4:b6:f5:34:b5 start
+                     
