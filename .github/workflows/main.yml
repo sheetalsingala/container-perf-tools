@@ -3,6 +3,7 @@ name: Docker Image CI
 on:
   push:
     branches: [ master ]
+    paths: standalone-trafficgen/Dockerfile-py3
   pull_request:
     branches: [ master ]
 
