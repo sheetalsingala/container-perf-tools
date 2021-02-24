@@ -7,6 +7,7 @@ RUN yum -y --enablerepo=extras install epel-release dpdk dpdk-tools \
        		gcc python3 python3-devel \
        		net-tools \
        		tmux gettext
+                     
 RUN python3 -m pip install --upgrade pip \
        && python3 -m pip install --upgrade setuptools wheel \
        && python3 -m pip install grpcio \
