@@ -14,7 +14,7 @@ jobs:
 #  podman pod create -p 50051:50051 -n trafficgen
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: Build container image, run container and start server
       run: |
            podman build . --file standalone-trafficgen/Dockerfile-py3 --tag my-image-name:latest
            podman run -d --rm --privileged -v /dev:/dev -v /sys:/sys -v /lib/modules:/lib/modules --cpuset-cpus 12-23 -e pci_list=0000:81:00.0,0000:81:00.1 --pod trafficgen my-image-name:latest /root/trafficgen_entry.sh server
