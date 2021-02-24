@@ -1,4 +1,4 @@
-FROM cent
+FROM centos:8
 USER root
 ENV TREX_VER "v2.87"
 
